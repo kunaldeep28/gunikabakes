@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gunika Bakes Blog</title><link rel="stylesheet" href="../style.css" /></head>
+<body><header><h1>Gunika's Baking Blog</h1><p>Whisks, flour, and sweet little stories.</p></header>
+<main id="blog-list"><p>Loading posts...</p></main><footer><a href="/">← Back to Home</a></footer>
+<script>
+async function loadPosts() {
+  const posts = await fetch('/posts/posts.json').then(res => res.json());
+  const container = document.getElementById('blog-list');
+  container.innerHTML = '';
+  posts.forEach(post => {
+    const item = document.createElement('div');
+    item.innerHTML = `<h2>${post.title}</h2><p>${post.date}</p><p>${post.summary}</p><hr>`;
+    container.appendChild(item);
+  });
+}
+loadPosts();
+</script></body></html>
